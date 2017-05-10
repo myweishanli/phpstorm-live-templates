@@ -163,10 +163,14 @@ Yii2 | Register Meta-tags
 ```php
 $transaction = Yii::$app->db->beginTransaction();
 try {
-    $END$
-    $transaction->commit();
+    $SELECTION$
 } catch (\Exception $e) {
+    $this->addError('exception', YII_DEBUG ? $e->getMessage() : Yii::t('common', 'Exception'));
+}
+if ($this->hasErrors()) {
     $transaction->rollBack();
+} else {
+    $transaction->commit();
 }
 ```
 
